@@ -2,6 +2,7 @@
 h1{
 	text-align: center;
 	font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	margin-bottom: 0px;
 }
 
 table{
@@ -11,7 +12,7 @@ table{
 	border-color: black;
 	/*border-width: 10px; */
 	/*background-color: blue;*/
-	margin-top: 75px;
+	margin-top: 35px;
 	margin-left: auto;	/* centers the table */
 	margin-right: auto; 
 }
@@ -20,16 +21,122 @@ td{
 	/*background-color: teal; */
 }
 
-
-
 .racer1{
 	height:30px;
 	width:100%;
-	background-color: orange;
+	background-color: orange;*/
+	/*background-image: http://vignette3.wikia.nocookie.net/hamtaro/images/4/49/Hamtaro_1.gif/revision/latest?cb=20131213011144;*/
 }
 
 .racer2{
 	height:30px;
 	width:100%;
 	background-color: red;
+}
+
+#restart{
+	height: 50px;
+	width: 100px;
+	border-color: black;
+	border-style: solid;
+	text-align: center;
+	line-height: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 15px;
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+#winner{
+	text-align: center;
+	font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+}
+
+p{
+	display: inline-block;
+	font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	margin-bottom: 0px;
+}
+
+.playerOne{
+	float: left;
+	margin-left: 100px;
+}
+
+.playerTwo{
+	float: right;
+	margin-right: 100px;
+}
+
+.inline{
+	/*float:left;*/
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+}
+
+/*
+.right{
+	float:right;
+	width: 50px;
+	height:50px;
+}
+*/
+
+.colorBlockOne{
+	float: left;
+	margin-left: 50px;
+}
+
+.colorBlockTwo{
+	float:right;
+	margin-right: 50px;
+}
+
+#red{
+	background-color: red;
+}
+
+#orange{
+	background-color: orange;
+}
+
+#yellow{
+	background-color: yellow;
+}
+
+#green{
+	background-color: green;
+}
+
+#blue{
+	background-color: blue;
+}
+
+#violet{
+	background-color: purple;
+}
+
+#red_{
+	background-color: red;
+}
+
+#orange_{
+	background-color: orange;
+}
+
+#yellow_{
+	background-color: yellow;
+}
+
+#green_{
+	background-color: green;
+}
+
+#blue_{
+	background-color: blue;
+}
+
+#violet_{
+	background-color: purple;
 }

@@ -1,9 +1,10 @@
 // OOP Racing Game example boilerplate code
+var winnerDeclared = false;
 
 function Game() {
   this.playerOne = new Player("one");
   this.playerTwo = new Player("two");
-  
+  //this.winnerDeclared = false;
 
 }
 
@@ -53,8 +54,70 @@ Game.prototype.init = function() {
         _this.playerTwo.moveDown();
       }
     });
+
+    $("#restart").click(function(){
+      //alert("you clicked restart");
+      //RESET PLAYER ONE
+      var currentPosition = cellSelector(_this.playerOne.rowPosition, _this.playerOne.columnPosition);
+      $(currentPosition).html('')
+      _this.playerOne.rowPosition = 1;
+      _this.playerOne.columnPosition = 0;
+      currentPosition = cellSelector(_this.playerOne.rowPosition, _this.playerOne.columnPosition);
+      //console.log("new position: " + currentPosition);
+      $(currentPosition).html('<div class="racer1"></div>')
+
+      //RESET PLAYER TWO
+      var currentPosition = cellSelector(_this.playerTwo.rowPosition, _this.playerTwo.columnPosition);
+      $(currentPosition).html('')
+      _this.playerTwo.rowPosition = 4; //counter to keep track of the row position
+      _this.playerTwo.columnPosition = 0; //counter to keep track of the column position
+      currentPosition = cellSelector(_this.playerTwo.rowPosition, _this.playerTwo.columnPosition);
+      //console.log("new position: " + currentPosition);
+      $(currentPosition).html('<div class="racer2"></div>')
+
+      //RESET WINNER
+      $("#winner").html('')
+      winnerDeclared = false;
+    });
   
-  
+    $("#red").click(function(){
+      $(".racer1").css("background-color", "red");
+    });
+    $("#orange").click(function(){
+      $(".racer1").css("background-color", "orange");
+    });
+    $("#yellow").click(function(){
+      $(".racer1").css("background-color", "yellow");
+    });
+    $("#green").click(function(){
+      $(".racer1").css("background-color", "green");
+    });
+    $("#blue").click(function(){
+      $(".racer1").css("background-color", "blue");
+    });
+    $("#violet").click(function(){
+      $(".racer1").css("background-color", "purple");
+    });
+
+    $("#red_").click(function(){
+      $(".racer2").css("background-color", "red");
+    });
+    $("#orange_").click(function(){
+      $(".racer2").css("background-color", "orange");
+    });
+    $("#yellow_").click(function(){
+      $(".racer2").css("background-color", "yellow");
+    });
+    $("#green_").click(function(){
+      $(".racer2").css("background-color", "green");
+    });
+    $("#blue_").click(function(){
+      $(".racer2").css("background-color", "blue");
+    });
+    $("#violet_").click(function(){
+      $(".racer2").css("background-color", "purple");
+    });
+
 };
 
 
@@ -83,7 +146,7 @@ function Player(team) {
 
 //PLAYER MOVES RIGHT 
 Player.prototype.moveRight = function() {
-  console.log("begin to move right!");
+  //console.log("begin to move right!");
   //If the player is reaching out of bounds, they will not move
   if((this.columnPosition >= 0) && (this.columnPosition < 11))
   {
@@ -99,9 +162,9 @@ Player.prototype.moveRight = function() {
 
     //CHANGE COUNTER TO MOVE ONE CELL TO THE RIGHT
     this.columnPosition = this.columnPosition + 1;  //moves the counter to the right one cell
-    console.log("current column: " + this.columnPosition);
+    //console.log("current column: " + this.columnPosition);
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); //string that contains the selector for the new position
-    console.log("current position: " + currentPosition);
+    //console.log("current position: " + currentPosition);
 
     //CHANGE POSITION TO MOVE ONE CELL TO THE RIGHT
     if(this.team === "one")
@@ -117,14 +180,27 @@ Player.prototype.moveRight = function() {
   else if(this.columnPosition === 11)
   {
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); 
-    console.log("current position: " + currentPosition);
+    //console.log("current position: " + currentPosition);
     if(this.team === "one")
     {
       $(currentPosition).html('<div class="racer1"></div>')
+      //console.log("winner declared's value: " + winnerDeclared);
+      if(winnerDeclared === false)
+      {
+        //alert("Winner is Player One");
+        $("#winner").html('Winner is Player One!!!')
+        winnerDeclared = true;
+      }
+
     }
-    else
+    else if(this.team === "two")
     {
       $(currentPosition).html('<div class="racer2"></div>')
+      if(winnerDeclared === false)
+      {
+        $("#winner").html('Winner is Player Two!!!')
+        winnerDeclared = true;
+      }
     }
   }
   
@@ -145,15 +221,15 @@ Player.prototype.moveLeft = function() {
     //console.log("current cell's html: " + currentCell.html());
     currentCell.html('')
 
-    //CHANGE COUNTER TO MOVE ONE CELL TO THE RIGHT
+    //CHANGE COUNTER TO MOVE ONE CELL TO THE LEFT
     this.columnPosition = this.columnPosition - 1;  //moves the counter to the right one cell
-    console.log("current column: " + this.columnPosition);
+    //console.log("current column: " + this.columnPosition);
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); //string that contains the selector for the new position
-    console.log("current position: " + currentPosition);
+    //console.log("current position: " + currentPosition);
 
     //CHANGE POSITION TO MOVE ONE CELL TO THE RIGHT
     //currentCell = $(currentPosition);
-    console.log("current position's html before adding racer:  " + $(currentPosition).html());
+    //console.log("current position's html before adding racer:  " + $(currentPosition).html());
     if(this.team === "one")
     {
       $(currentPosition).html('<div class="racer1"></div>')
@@ -197,22 +273,35 @@ Player.prototype.moveUp = function() {
 
     //CHANGE COUNTER TO MOVE ONE CELL TO THE RIGHT
     this.rowPosition = this.rowPosition - 1;  //moves the counter to the right one cell
-    console.log("current column: " + this.columnPosition);
+    //console.log("current column: " + this.columnPosition);
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); //string that contains the selector for the new position
-    console.log("current position: " + currentPosition);
+    //console.log("current position: " + currentPosition);
 
     //CHANGE POSITION TO MOVE ONE CELL TO THE RIGHT
     //currentCell = $(currentPosition);
-    console.log("current position's html before adding racer:  " + $(currentPosition).html());
-    $(currentPosition).html('<div class="racer"></div>')
-    //console.log("current position's html: " + $(currentPosition).html());
+    //console.log("current position's html before adding racer:  " + $(currentPosition).html());
+    if(this.team === "one")
+    {
+      $(currentPosition).html('<div class="racer1"></div>')
+    }
+    else
+    {
+      $(currentPosition).html('<div class="racer2"></div>')
+    }
 
   }
   else if(this.rowPosition === 0)
   {
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); 
-    console.log("current position: " + currentPosition);
-    $(currentPosition).html('<div class="racer"></div>')
+    //console.log("current position: " + currentPosition);
+    if(this.team === "one")
+    {
+      $(currentPosition).html('<div class="racer1"></div>')
+    }
+    else
+    {
+      $(currentPosition).html('<div class="racer2"></div>')
+    }
   }
 }
 
@@ -233,22 +322,34 @@ Player.prototype.moveDown = function() {
 
     //CHANGE COUNTER TO MOVE ONE CELL TO THE RIGHT
     this.rowPosition = this.rowPosition + 1;  //moves the counter to the right one cell
-    console.log("current column: " + this.columnPosition);
+    //console.log("current column: " + this.columnPosition);
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); //string that contains the selector for the new position
-    console.log("current position: " + currentPosition);
+    //console.log("current position: " + currentPosition);
 
     //CHANGE POSITION TO MOVE ONE CELL TO THE RIGHT
-    //currentCell = $(currentPosition);
-    console.log("current position's html before adding racer:  " + $(currentPosition).html());
-    $(currentPosition).html('<div class="racer"></div>')
-    //console.log("current position's html: " + $(currentPosition).html());
+    //console.log("current position's html before adding racer:  " + $(currentPosition).html());
+    if(this.team === "one")
+    {
+      $(currentPosition).html('<div class="racer1"></div>')
+    }
+    else
+    {
+      $(currentPosition).html('<div class="racer2"></div>')
+    }
 
   }
   else if(this.rowPosition === 5)
   {
     currentPosition = cellSelector(this.rowPosition, this.columnPosition); 
-    console.log("current position: " + currentPosition);
-    $(currentPosition).html('<div class="racer"></div>')
+    //console.log("current position: " + currentPosition);
+    if(this.team === "one")
+    {
+      $(currentPosition).html('<div class="racer1"></div>')
+    }
+    else
+    {
+      $(currentPosition).html('<div class="racer2"></div>')
+    }
   }
 
 }
@@ -269,10 +370,7 @@ function rowSelector(row)
 
 // A starter Track constructor.
 function Track() {
-  //Tracks the cells of the board instance
-  //this.$cells = ...
-
-  //Store any other properties that board may have below, such as a reset option
+  
 };
 
 // Start the game!
