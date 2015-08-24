@@ -1,1 +1,35 @@
 /* Style Sheet */
+h1{
+	text-align: center;
+	font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+table{
+	height: 350px;
+	width: 700px;
+	border-style: solid;
+	border-color: black;
+	/*border-width: 10px; */
+	/*background-color: blue;*/
+	margin-top: 75px;
+	margin-left: auto;	/* centers the table */
+	margin-right: auto; 
+}
+
+td{
+	/*background-color: teal; */
+}
+
+
+
+.racer1{
+	height:30px;
+	width:100%;
+	background-color: orange;
+}
+
+.racer2{
+	height:30px;
+	width:100%;
+	background-color: red;
+}
